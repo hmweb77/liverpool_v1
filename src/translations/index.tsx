@@ -68,10 +68,10 @@ interface Translatiions {
       loadedFriesDesc: "Crispy fries topped with melted cheddar and crispy bacon",
       sweetChilliNuggets: "Sweet Chilli Nuggets",
       sweetChilliNuggetsDesc: "Tender chicken nuggets with sweet chilli sauce",
-  
-      number1Desc: "Our signature late-night burger with special sauce",
-      goatSalahDesc: "Premium beef sandwich with Egyptian spices",
-      ynwaDesc: "Sharing platter with wings, fries, and dips",
+
+      number1Desc: "200g Beef, fresh onion, pickles, ketchup and mustard",
+      goatSalahDesc: "200g Beef, chèvre cheese, lettuce, tomato, grilled onion and fig jam",
+      ynwaDesc: "200g Beef, cheese, crispy bacon, lettuce, tomato, grilled onion, fried egg and smoked BBQ sauce",
   
       // Partners
       ourPartners: "Our Partners",
@@ -163,9 +163,9 @@ interface Translatiions {
       sweetChilliNuggets: "Nuggets Sweet Chilli",
       sweetChilliNuggetsDesc: "Nuggets de frango tenros com molho sweet chilli",
   
-      number1Desc: "O nosso hambúrguer especial da noite com molho secreto",
-      goatSalahDesc: "Sanduíche premium de carne com especiarias egípcias",
-      ynwaDesc: "Prato para partilhar com asinhas, batatas fritas e molhos",
+      number1Desc: "200g Novilho, cebola crua, pickles, ketchup e mostrada",
+      goatSalahDesc: "200g Novilho, queijo de cabra, alface, tomate, cebola grelhada e doce de figo",
+      ynwaDesc: "200g Novilho, queijo, bacon crocante, alface, tomate, cebola grelhada, ovo estrelado e molho BBQ fumado",
   
       // Partners
       ourPartners: "Nossos Parceiros",
