@@ -102,7 +102,7 @@ const Menu = () => {
                       </div>
                       <p className="text-sm text-gray-400 mt-1">{item.description}</p>
                     </div>
-                    <span className="text-red-600 font-semibold ml-4">{item.price}</span>
+                    {/* <span className="text-red-600 font-semibold ml-4">{item.price}</span> */}
                   </div>
                 ))}
               </div>

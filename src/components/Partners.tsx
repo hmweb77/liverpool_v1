@@ -6,17 +6,17 @@ import { useTranslation } from '@/hooks/useTranslations';
 const partners = [
   {
     name: 'Malt Club',
-    logo: '../Screenshot 2024-11-12 at 00.25.08.png',
+    logo: '../IMG_4094.png',
     instagram: 'https://www.instagram.com/maltclublisbon'
   },
   {
     name: 'Cais Bar',
-    logo: '../Screenshot 2024-11-12 at 00.23.25.png',
+    logo: '../IMG_4101.png',
     instagram: 'https://www.instagram.com/liverpoolbarlisboa/'
   },
   {
     name: 'Copenhagen Bar',
-    logo: '../Screenshot 2024-11-12 at 00.24.20.png',
+    logo: '../IMG_4096.png',
     instagram: 'https://www.instagram.com/copenhagen_bar_cph'
   }
 ];
