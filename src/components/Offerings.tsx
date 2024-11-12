@@ -57,7 +57,7 @@ const Offerings = () => {
         <div className="mt-16 relative">
           <div className="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden">
             <img
-              src="../2.jpeg"
+              src="../Anfield-Stadium.jpg"
               alt="Liverpool Bar Atmosphere"
               className="w-full h-full object-cover"
             />

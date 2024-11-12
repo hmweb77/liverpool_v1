@@ -1,12 +1,31 @@
-"use client"
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ChevronDown, Calendar, MapPin } from 'lucide-react';
 import ReservationModal from '@/components/ReservationsModal';
 import { useTranslation } from '@/hooks/useTranslations';
+import { sanityClient } from '../sanityClient';
+
 
 const Hero = () => {
   const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [description, setDescription] = useState('Liverpool Bar - Lisbon\'s Iconic Nightspots for Over 40 Years');
+
+  useEffect(() => {
+    const fetchDescription = async () => {
+      try {
+        const query = `*[_type == "heroDescription"][0]{description}`;
+        const data = await sanityClient.fetch(query);
+        if (data) {
+          setDescription(data.description);
+        } else {
+          console.error("No data found for heroDescription.");
+        }
+      } catch (error) {
+        console.error("Error fetching hero description:", error);
+      }
+    };
+    fetchDescription();
+  }, []);
 
   return (
     <div className="relative h-screen">
@@ -38,7 +57,7 @@ const Hero = () => {
           {t('tagline')}
         </h1>
         <p className="text-xl md:text-2xl mb-8 text-gray-200 max-w-2xl">
-          {t('subtitle')}
+          {description}
         </p>
         <div className="flex flex-col sm:flex-row gap-4">
           <a

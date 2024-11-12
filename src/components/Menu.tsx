@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from 'react';
-import { GlassWater, UtensilsCrossed, Flame, Star } from 'lucide-react';
+import { GlassWater, UtensilsCrossed, Star } from 'lucide-react';
 import { useTranslation } from '@/hooks/useTranslations';
 
 const Menu = () => {
@@ -12,19 +12,19 @@ const Menu = () => {
       {
         category: t('signatureCocktails'),
         items: [
-          { name: 'Caipirinha', price: '€8', description: t('caipirinhaDesc'), bestseller: true },
-          { name: 'Sex on the Beach', price: '€9', description: t('sexOnTheBeachDesc'), bestseller: true },
-          { name: 'Espresso Martini', price: '€10', description: t('espressoMartiniDesc'), bestseller: true },
-          { name: 'Moscow Mule', price: '€9', description: t('moscowMuleDesc'), bestseller: true }
+          { name: 'Red Glory', price: '€9', description: t('caipirinhaDesc'), bestseller: true },
+          { name: 'Mermaid parade', price: '€9', description: t('sexOnTheBeachDesc'), bestseller: true },
+          { name: 'Mexican connection', price: '€9', description: t('espressoMartiniDesc'), bestseller: true },
+          { name: 'Summer Punch', price: '€9', description: t('moscowMuleDesc'), bestseller: true }
         ]
       },
       {
         category: t('premiumSpirits'),
         items: [
-          { name: 'Beefeater', price: '€7', description: t('beefeaterDesc'), bestseller: true },
-          { name: 'Jameson', price: '€7', description: t('jamesonDesc'), bestseller: true },
-          { name: 'Havana', price: '€7', description: t('havanaDesc'), bestseller: true },
-          { name: 'Absolut', price: '€7', description: t('absolutDesc'), bestseller: true }
+          { name: 'Caipirinha', price: '€8', description: t('beefeaterDesc'), bestseller: true },
+          { name: 'Sex on the Beach', price: '€9', description: t('jamesonDesc'), bestseller: true },
+          { name: 'Espresso Martini', price: '€10', description: t('havanaDesc'), bestseller: true },
+          { name: 'Moscow Mule', price: '€9', description: t('absolutDesc'), bestseller: true }
         ]
       }
     ],
@@ -34,7 +34,8 @@ const Menu = () => {
         items: [
           { name: t('BBQ chicken wings'), price: '€9', description: t('bbqWingsDesc'), bestseller: true },
           { name: t('Crispy fries with cheddar and bacon'), price: '€8', description: t('loadedFriesDesc'), bestseller: true },
-          { name: t('Sweet chilli chicken nuggets'), price: '€8', description: t('sweetChilliNuggetsDesc'), bestseller: true }
+          { name: t('Sweet chilli chicken nuggets'), price: '€8', description: t('sweetChilliNuggetsDesc'), bestseller: true },
+          { name: t('Petit gateau'), price: '€4', description: t('Petitgateau'), bestseller: true },
         ]
       },
       {
@@ -42,7 +43,8 @@ const Menu = () => {
         items: [
           { name: 'Number #1', price: '€12', description: t('number1Desc'), bestseller: true },
           { name: 'G.O.A.T. SALAH', price: '€14', description: t('goatSalahDesc'), bestseller: true },
-          { name: "You'll Never Walk Alone", price: '€16', description: t('ynwaDesc'), bestseller: true }
+          { name: "You'll Never Walk Alone", price: '€16', description: t('ynwaDesc'), bestseller: true },
+          { name: "Salada ceasar", price: '€8.5', description: t('salada'), bestseller: true }
         ]
       }
     ]
@@ -86,7 +88,7 @@ const Menu = () => {
             <div key={index} className="bg-gradient-to-br from-gray-900/50 to-black/50 p-8 rounded-lg animated-gradient-fast">
               <h3 className="text-xl font-bold mb-6 text-red-600 flex items-center gap-2">
                 {section.category}
-                <Flame className="text-yellow-500" size={20} />
+                <Star className="text-yellow-500 fill-yellow-500" size={20} />
               </h3>
               <div className="space-y-6">
                 {section.items.map((item, itemIndex) => (
@@ -96,13 +98,11 @@ const Menu = () => {
                         <h4 className="font-medium text-white group-hover:text-red-500 transition-colors">
                           {item.name}
                         </h4>
-                        {item.bestseller && (
-                          <Star size={16} className="text-yellow-500 fill-yellow-500" />
-                        )}
+                        {item.bestseller}
                       </div>
                       <p className="text-sm text-gray-400 mt-1">{item.description}</p>
                     </div>
-                    {/* <span className="text-red-600 font-semibold ml-4">{item.price}</span> */}
+                    <span className="text-red-600 font-semibold ml-4">{item.price}</span>
                   </div>
                 ))}
               </div>
@@ -110,12 +110,6 @@ const Menu = () => {
           ))}
         </div>
 
-        <div className="mt-8 text-center">
-          <p className="text-sm text-gray-400">
-            <Star size={16} className="inline text-yellow-500 fill-yellow-500 mr-1" />
-            {t('bestSellers')}
-          </p>
-        </div>
       </div>
     </section>
   );

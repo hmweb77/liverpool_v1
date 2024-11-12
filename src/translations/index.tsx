@@ -9,7 +9,7 @@ interface Translatiions {
       // Navbar
       about: "About",
       offerings: "Offerings",
-      menu: "Menu",
+      menu: "Bestsellers",
       partners: "Partners",
       contact: "Contact",
   
@@ -47,20 +47,21 @@ interface Translatiions {
       food: "Food",
       bestSellers: "Best sellers",
       signatureCocktails: "Signature Cocktails",
-      premiumSpirits: "Premium Spirits",
+      premiumSpirits: "Classic Cocktails",
       barSnacks: "Bar Snacks",
-      lateNightSpecials: "Late Night Specials",
+      lateNightSpecials: "The Specials",
   
       // Menu Items Descriptions
-      caipirinhaDesc: "Classic Brazilian cocktail with cachaça, lime, and sugar",
-      sexOnTheBeachDesc: "Vodka, peach schnapps, orange juice, and cranberry",
-      espressoMartiniDesc: "Fresh espresso, vodka, and coffee liqueur",
-      moscowMuleDesc: "Vodka, ginger beer, and fresh lime juice",
+      caipirinhaDesc: "Beefeater gin, cointreau, strawberry & sparkling wine",
+      sexOnTheBeachDesc: "Aperol, raspberry liquor, orange juice, lemon & egg white",
+      espressoMartiniDesc: "Olmeca, safari, passion fruit & lemon",
+      moscowMuleDesc: "Bombay sapphire, st-germain, martini rosso & ginger ale",
       
-      beefeaterDesc: "London Dry Gin",
-      jamesonDesc: "Triple-distilled Irish whiskey",
-      havanaDesc: "Cuban rum",
-      absolutDesc: "Swedish vodka",
+      beefeaterDesc: "Classic Brazilian cocktail with cachaça, lime, and sugar",
+      jamesonDesc: "Vodka, peach schnapps, orange juice, and cranberry",
+      havanaDesc: "Fresh espresso, vodka, and coffee liqueur",
+      absolutDesc: "Vodka, ginger beer, and fresh lime juice",
+
   
       bbqWings: "BBQ Chicken Wings",
       bbqWingsDesc: "Crispy wings tossed in house-made BBQ sauce",
@@ -68,10 +69,12 @@ interface Translatiions {
       loadedFriesDesc: "Crispy fries topped with melted cheddar and crispy bacon",
       sweetChilliNuggets: "Sweet Chilli Nuggets",
       sweetChilliNuggetsDesc: "Tender chicken nuggets with sweet chilli sauce",
+      Petitgateau: "Served with a scoop of vanilla ice cream",
 
-      number1Desc: "200g Beef, fresh onion, pickles, ketchup and mustard",
-      goatSalahDesc: "200g Beef, chèvre cheese, lettuce, tomato, grilled onion and fig jam",
-      ynwaDesc: "200g Beef, cheese, crispy bacon, lettuce, tomato, grilled onion, fried egg and smoked BBQ sauce",
+      number1Desc: "Burger 200g Beef, fresh onion, pickles, ketchup and mustard",
+      goatSalahDesc: "Burger 200g Beef, chèvre cheese, lettuce, tomato, grilled onion and fig jam",
+      ynwaDesc: "Burger 200g Beef, cheese, crispy bacon, lettuce, tomato, grilled onion, fried egg and smoked BBQ sauce",
+      salada:"Lettuce, chicken, croutons, parmesan cheese, ceaser dressing",
   
       // Partners
       ourPartners: "Our Partners",
@@ -103,7 +106,7 @@ interface Translatiions {
       // Navbar
       about: "Sobre",
       offerings: "Ofertas",
-      menu: "Menu",
+      menu: "Mais vendidos",
       partners: "Parceiros",
       contact: "Contacto",
   
@@ -141,32 +144,34 @@ interface Translatiions {
       food: "Comida",
       bestSellers: "Mais vendidos",
       signatureCocktails: "Cocktails de Assinatura",
-      premiumSpirits: "Bebidas Premium",
+      premiumSpirits: "Coquetéis Clássicos",
       barSnacks: "Petiscos",
-      lateNightSpecials: "Especiais da Noite",
+      lateNightSpecials: "Especial",
   
       // Menu Items Descriptions
-      caipirinhaDesc: "Cocktail brasileiro clássico com cachaça, lima e açúcar",
-      sexOnTheBeachDesc: "Vodka, licor de pêssego, sumo de laranja e arando",
-      espressoMartiniDesc: "Café expresso, vodka e licor de café",
-      moscowMuleDesc: "Vodka, cerveja de gengibre e sumo de lima fresco",
-      
-      beefeaterDesc: "Gin London Dry",
-      jamesonDesc: "Whiskey irlandês tripla destilação",
-      havanaDesc: "Rum cubano",
-      absolutDesc: "Vodka sueca",
-  
+      caipirinhaDesc: "Beefeater gin, cointreau, morango & espumante",
+      sexOnTheBeachDesc: "Aperol, licor de framboesa, sumo de laranja, limão & clara de ovo",
+      espressoMartiniDesc: "Olmeca, safari, maracujá & limão",
+      moscowMuleDesc: "Bombay sapphire, st-germain, martini rosso & ginger ale",
+
+      beefeaterDesc: "Cocktail brasileiro clássico com cachaça, lima e açúcar",
+      jamesonDesc: "Vodka, licor de pêssego, sumo de laranja e arando",
+      havanaDesc: "Café expresso, vodka e licor de café",
+      absolutDesc: "Vodka, cerveja de gengibre e sumo de lima fresco",
+
       bbqWings: "Asinhas de Frango BBQ",
       bbqWingsDesc: "Asinhas crocantes com molho BBQ caseiro",
       loadedFries: "Batatas Carregadas",
       loadedFriesDesc: "Batatas fritas com queijo cheddar derretido e bacon crocante",
       sweetChilliNuggets: "Nuggets Sweet Chilli",
       sweetChilliNuggetsDesc: "Nuggets de frango tenros com molho sweet chilli",
+      Petitgateau: "Servido com uma bola de gelado de baunilha",
+
   
-      number1Desc: "200g Novilho, cebola crua, pickles, ketchup e mostrada",
-      goatSalahDesc: "200g Novilho, queijo de cabra, alface, tomate, cebola grelhada e doce de figo",
-      ynwaDesc: "200g Novilho, queijo, bacon crocante, alface, tomate, cebola grelhada, ovo estrelado e molho BBQ fumado",
-  
+      number1Desc: "Hambúrguer 200g Novilho, cebola crua, pickles, ketchup e mostrada",
+      goatSalahDesc: "Hambúrguer 200g Novilho, queijo de cabra, alface, tomate, cebola grelhada e doce de figo",
+      ynwaDesc: "Hambúrguer 200g Novilho, queijo, bacon crocante, alface, tomate, cebola grelhada, ovo estrelado e molho BBQ fumado",
+      salada:"Coração de alface, frango, croutons, queijo parmesão e molho césar",
       // Partners
       ourPartners: "Nossos Parceiros",
   

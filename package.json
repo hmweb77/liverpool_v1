@@ -17,10 +17,14 @@
     "typescript": "^5"
   },
   "dependencies": {
+    "@sanity/image-url": "^1.1.0",
+    "@sanity/vision": "^3.64.0",
     "lucide-react": "^0.456.0",
     "next": "15.0.3",
+    "next-sanity": "^9.8.11",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-   
+    "react-dom": "^18.2.0",
+    "sanity": "^3.64.0",
+    "styled-components": "^6.1.13"
   }
 }
