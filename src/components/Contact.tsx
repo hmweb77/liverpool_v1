@@ -58,7 +58,7 @@ const Contact = () => {
           </div>
           <div className="relative h-[400px] rounded-lg overflow-hidden group">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d194.71636851550093!2d-9.144930!3d38.707260!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd19347f3e5f4f01%3A0x4b0c71d8751c7d85!2sLiverpool%20Bar!5e0!3m2!1sen!2spt!4v1710337200000!5m2!1sen!2spt"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3113.4671869338204!2d-9.1431994!3d38.707081599999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd19347dce782005%3A0x60f0123521cb1854!2sBar%20Liverpool!5e0!3m2!1sen!2spt!4v1731371385795!5m2!1sen!2spt"
               width="100%"
               height="100%"
               style={{ border: 0, filter: 'grayscale(100%) contrast(1.2)' }}

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React from 'react';
 import { X, Calendar, Clock, Users, Send } from 'lucide-react';
 import { useTranslation } from '@/hooks/useTranslations';
@@ -86,6 +86,30 @@ const ReservationModal: React.FC<ReservationModalProps> = ({ isOpen, onClose }) 
                     ))}
                     <option value="more">{t('moreThanTen')}</option>
                   </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                    {t('name')}
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-red-600"
+                    placeholder={t('namePlaceholder')}
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                    {t('contact')}
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-red-600"
+                    placeholder={t('contactPlaceholder')}
+                  />
                 </div>
 
                 <div>

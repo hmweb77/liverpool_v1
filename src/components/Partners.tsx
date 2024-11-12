@@ -6,17 +6,17 @@ import { useTranslation } from '@/hooks/useTranslations';
 const partners = [
   {
     name: 'Malt Club',
-    logo: '../Logo Malt 2.jpeg',
+    logo: '../Screenshot 2024-11-12 at 00.25.08.png',
     instagram: 'https://www.instagram.com/maltclublisbon'
   },
   {
     name: 'Cais Bar',
-    logo: '../Logo Cais.jpg',
+    logo: '../Screenshot 2024-11-12 at 00.23.25.png',
     instagram: 'https://www.instagram.com/liverpoolbarlisboa/'
   },
   {
     name: 'Copenhagen Bar',
-    logo: '../Logo Copenhagen.jpeg',
+    logo: '../Screenshot 2024-11-12 at 00.24.20.png',
     instagram: 'https://www.instagram.com/copenhagen_bar_cph'
   }
 ];
@@ -39,11 +39,11 @@ const Partners = () => {
               key={index}
               className="group flex flex-col items-center"
             >
-              <div className="w-32 h-32 md:w-40 md:h-40 relative rounded-full overflow-hidden bg-black/50 backdrop-blur-sm p-4 transition-transform duration-300 group-hover:scale-105">
+              <div className="w-32 h-32 md:w-40 md:h-40 relative rounded-full overflow-hidden p-4 transition-transform duration-300 group-hover:scale-105">
                 <img
                   src={partner.logo}
                   alt={partner.name}
-                  className="w-full h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
+                  className="w-full h-full object-contain   group-hover:grayscale-0 transition-all duration-300"
                 />
               </div>
               <div className="mt-3 text-center">
