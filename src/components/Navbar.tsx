@@ -1,15 +1,18 @@
-"use client"
 import React, { useContext } from 'react';
-import { Menu, X, Globe } from 'lucide-react';
-import LanguageContext from '@/context/languageContext';
+import { Menu, X, Globe, Calendar } from 'lucide-react';
+import LanguageContext from '../context/languageContext';
 
+import ReservationModal from './ReservationsModal';
 interface NavbarProps {
   isScrolled: boolean;
 }
 
 const Navbar: React.FC<NavbarProps> = ({ isScrolled }) => {
   const [isOpen, setIsOpen] = React.useState(false);
+  const [isReservationModalOpen, setIsReservationModalOpen] = React.useState(false);
   const { language, setLanguage } = useContext(LanguageContext);
+
+  const navItems = ['About', 'Offerings', 'Menu', 'Gallery', 'Partners', 'Contact'];
 
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${
@@ -17,15 +20,18 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled }) => {
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <div className="flex mt-6 ">
-            <img src='../Logo recadré - Liverpool.png' className='w-20'/>
-            <h1 className="text-red-600 font-bold text-xl mt-6">LIVERPOOL BAR</h1>
-        
+          <div className="flex items-center space-x-3">
+            <img 
+              src="https://lh3.googleusercontent.com/pw/AP1GczPFDsDkE7Mx92X_byKtLxvfIxX8i4-kVaoSbTxnIX6uNpcl2jjTJBG8y2Wdn7aPI_PZfMxl8qU-68WrifCz1ykvkqsG4EbcRLaLO7t3cfyhSdEyEBF-2252f-cBkuOzpilnt0n4lZSEWeGIls8kXZo=w275-h266-s-no-gm?authuser=0"
+              alt="Liverpool Bar Logo"
+              className="h-14 w-14 object-contain transition-transform duration-300 hover:scale-110"
+            />
+            <span className="text-red-600 font-bold text-xl">LIVERPOOL BAR</span>
           </div>
           
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-4">
-              {['About', 'Offerings', 'Bestsellers', 'Partners', 'Contact'].map((item) => (
+              {navItems.map((item) => (
                 <a
                   key={item}
                   href={`#${item.toLowerCase()}`}
@@ -34,6 +40,13 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled }) => {
                   {item}
                 </a>
               ))}
+              <button
+                onClick={() => setIsReservationModalOpen(true)}
+                className="flex items-center gap-2 text-white bg-red-600 hover:bg-red-700 px-4 py-2 rounded-full transition-colors"
+              >
+                <Calendar size={18} />
+                Make a Reservation
+              </button>
               <button
                 onClick={() => setLanguage(language === 'en' ? 'pt' : 'en')}
                 className="text-gray-300 hover:text-red-600 transition-colors px-3 py-2 rounded-md text-sm font-medium flex items-center gap-2"
@@ -59,7 +72,7 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled }) => {
       {isOpen && (
         <div className="md:hidden bg-black/95 backdrop-blur-sm">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            {['About', 'Offerings', 'Bestsellers', 'Partners', 'Contact'].map((item) => (
+            {navItems.map((item) => (
               <a
                 key={item}
                 href={`#${item.toLowerCase()}`}
@@ -71,10 +84,20 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled }) => {
             ))}
             <button
               onClick={() => {
+                setIsReservationModalOpen(true);
+                setIsOpen(false);
+              }}
+              className="flex items-center gap-2 text-white bg-red-600 hover:bg-red-700 px-4 py-2 rounded-full transition-colors w-full"
+            >
+              <Calendar size={18} />
+              Make a Reservation
+            </button>
+            <button
+              onClick={() => {
                 setLanguage(language === 'en' ? 'pt' : 'en');
                 setIsOpen(false);
               }}
-              className="text-gray-300 hover:text-red-600  px-3 py-2 rounded-md text-base font-medium w-full text-left flex items-center gap-2"
+              className="text-gray-300 hover:text-red-600 block px-3 py-2 rounded-md text-base font-medium w-full text-left flex items-center gap-2"
             >
               <Globe size={18} />
               {language.toUpperCase()}
@@ -82,6 +105,9 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled }) => {
           </div>
         </div>
       )}
+
+      {/* Reservation Modal */}
+      <ReservationModal isOpen={isReservationModalOpen} onClose={() => setIsReservationModalOpen(false)} />
     </nav>
   );
 };

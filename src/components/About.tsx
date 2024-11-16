@@ -1,7 +1,6 @@
-"use client"
 import React from 'react';
 import { Clock, MapPin, Music } from 'lucide-react';
-import { useTranslation } from '@/hooks/useTranslations';
+import { useTranslation } from '../hooks/useTranslations';
 
 const About = () => {
   const { t } = useTranslation();
@@ -22,7 +21,10 @@ const About = () => {
                 <Clock className="text-red-600 flex-shrink-0" />
                 <div>
                   <h3 className="font-semibold mb-2">{t('openingHours')}</h3>
-                  <p className="text-gray-400">{t('openingTime')}</p>
+                  <div className="text-gray-400">
+                    <p className="mb-2">Mon-Fri: 5PM-12AM</p>
+                    <p>Sat-Sun: 11AM-12AM</p>
+                  </div>
                 </div>
               </div>
               <div className="flex items-start space-x-4">
@@ -36,11 +38,11 @@ const About = () => {
           </div>
           <div className="relative">
             <img
-              src="../1.jpeg"
+              src="https://lh3.googleusercontent.com/pw/AP1GczPNmGgOexTc6wAlOxVf5lcxNGi6qM_dqkv5Qbj7qNwmR36jRaxSNQleLY4UBXwefR5Mfwlmw9mMMmjoEky9OCIoT0IYusXgOX9HD23lxzc2ObuaUCJnItxTawddmu1vIpAtnH7dVH6DIpjt0SoKGgg=w950-h633-s-no"
               alt="Liverpool Bar Interior"
-              className="rounded-lg shadow-2xl"
+              className="rounded-lg shadow-2xl hover-lift"
             />
-            <div className="absolute -bottom-6 -right-6 bg-red-600 p-6 rounded-lg shadow-xl">
+            <div className="absolute -bottom-6 -right-6 bg-red-600 p-6 rounded-lg shadow-xl hover-tilt">
               <Music size={32} className="text-white" />
               <p className="text-white mt-2 font-semibold">{t('liveDjSets')}</p>
             </div>

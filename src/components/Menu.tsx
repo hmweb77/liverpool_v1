@@ -1,50 +1,124 @@
-"use client"
 import React, { useState } from 'react';
 import { GlassWater, UtensilsCrossed, Star } from 'lucide-react';
-import { useTranslation } from '@/hooks/useTranslations';
+import { useTranslation } from '../hooks/useTranslations';
+import MenuModal from './MenuModal';
 
 const Menu = () => {
   const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState<'drinks' | 'food'>('drinks');
+  const [isMenuModalOpen, setIsMenuModalOpen] = useState(false);
 
   const menuItems = {
     drinks: [
       {
         category: t('signatureCocktails'),
+        icon: <Star className="text-yellow-500" size={24} />,
         items: [
-          { name: 'Red Glory', price: '€9', description: t('caipirinhaDesc'), bestseller: true },
-          { name: 'Mermaid parade', price: '€9', description: t('sexOnTheBeachDesc'), bestseller: true },
-          { name: 'Mexican connection', price: '€9', description: t('espressoMartiniDesc'), bestseller: true },
-          { name: 'Summer Punch', price: '€9', description: t('moscowMuleDesc'), bestseller: true }
+          {
+            name: 'Red Glory',
+            price: '€9.00',
+            description: t('redGloryDesc')
+          },
+          {
+            name: 'Mermaid Parade',
+            price: '€9.00',
+            description: t('mermaidParadeDesc')
+          },
+          {
+            name: 'Mexican Connection',
+            price: '€9.00',
+            description: t('mexicanConnectionDesc')
+          },
+          {
+            name: 'Summer Punch',
+            price: '€9.00',
+            description: t('summerPunchDesc')
+          }
         ]
       },
       {
-        category: t('premiumSpirits'),
+        category: t('classicCocktails'),
+        icon: <Star className="text-yellow-500" size={24} />,
         items: [
-          { name: 'Caipirinha', price: '€8', description: t('beefeaterDesc'), bestseller: true },
-          { name: 'Sex on the Beach', price: '€9', description: t('jamesonDesc'), bestseller: true },
-          { name: 'Espresso Martini', price: '€10', description: t('havanaDesc'), bestseller: true },
-          { name: 'Moscow Mule', price: '€9', description: t('absolutDesc'), bestseller: true }
+          {
+            name: 'Caipirinha',
+            price: '€8.50',
+            description: t('caipirinhaDesc')
+          },
+          {
+            name: 'Sex on the Beach',
+            price: '€9.00',
+            description: t('sexOnTheBeachDesc')
+          },
+          {
+            name: 'Espresso Martini',
+            price: '€10.00',
+            description: t('espressoMartiniDesc')
+          },
+          {
+            name: 'Moscow Mule',
+            price: '€10.00',
+            description: t('moscowMuleDesc')
+          }
         ]
       }
     ],
     food: [
       {
         category: t('barSnacks'),
+        icon: <Star className="text-yellow-500" size={24} />,
         items: [
-          { name: t('BBQ chicken wings'), price: '€9', description: t('bbqWingsDesc'), bestseller: true },
-          { name: t('Crispy fries with cheddar and bacon'), price: '€8', description: t('loadedFriesDesc'), bestseller: true },
-          { name: t('Sweet chilli chicken nuggets'), price: '€8', description: t('sweetChilliNuggetsDesc'), bestseller: true },
-          { name: t('Petit gateau'), price: '€4', description: t('Petitgateau'), bestseller: true },
+          {
+            name: t('bbqWings'),
+            price: '€5.90',
+            description: t('bbqWingsDesc')
+          },
+          {
+            name: t('loadedFries'),
+            price: '€5.90',
+            description: t('loadedFriesDesc')
+          },
+          {
+            name: t('sweetChilliNuggets'),
+            price: '€5.90',
+            description: t('sweetChilliNuggetsDesc')
+          },
+          {
+            name: t('cheetosMozzarella'),
+            price: '€4.90',
+            description: t('cheetosMozzarellaDesc')
+          },
+          {
+            name: t('petitGateau'),
+            price: '€4.00',
+            description: t('petitGateauDesc')
+          }
         ]
       },
       {
-        category: t('lateNightSpecials'),
+        category: t('theSpecials'),
+        icon: <Star className="text-yellow-500" size={24} />,
         items: [
-          { name: 'Number #1', price: '€12', description: t('number1Desc'), bestseller: true },
-          { name: 'G.O.A.T. SALAH', price: '€14', description: t('goatSalahDesc'), bestseller: true },
-          { name: "You'll Never Walk Alone", price: '€16', description: t('ynwaDesc'), bestseller: true },
-          { name: "Salada ceasar", price: '€8.5', description: t('salada'), bestseller: true }
+          {
+            name: t('number1Burger'),
+            price: '€9.50',
+            description: t('number1BurgerDesc')
+          },
+          {
+            name: t('goatSalahBurger'),
+            price: '€9.50',
+            description: t('goatSalahBurgerDesc')
+          },
+          {
+            name: t('ynwaBurger'),
+            price: '€9.50',
+            description: t('ynwaBurgerDesc')
+          },
+          {
+            name: t('caesarSalad'),
+            price: '€8.50',
+            description: t('caesarSaladDesc')
+          }
         ]
       }
     ]
@@ -54,8 +128,8 @@ const Menu = () => {
     <section id="menu" className="py-20 bg-gradient-to-b from-black to-red-950 animated-gradient">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-red-600 mb-4">
-            {t('menu')}
+          <h2 className="text-[4.8rem] font-bold text-red-600 mb-4 tracking-tighter hover-tilt glow-text">
+            {t('ourBestsellers')}
           </h2>
           <div className="flex justify-center space-x-4 mb-8">
             <button
@@ -88,17 +162,16 @@ const Menu = () => {
             <div key={index} className="bg-gradient-to-br from-gray-900/50 to-black/50 p-8 rounded-lg animated-gradient-fast">
               <h3 className="text-xl font-bold mb-6 text-red-600 flex items-center gap-2">
                 {section.category}
-                <Star className="text-yellow-500 fill-yellow-500" size={20} />
+                {section.icon}
               </h3>
               <div className="space-y-6">
                 {section.items.map((item, itemIndex) => (
-                  <div key={itemIndex} className="flex justify-between items-start group">
+                  <div key={itemIndex} className="flex justify-between items-start group menu-item">
                     <div className="flex-1">
                       <div className="flex items-center gap-2">
                         <h4 className="font-medium text-white group-hover:text-red-500 transition-colors">
                           {item.name}
                         </h4>
-                        {item.bestseller}
                       </div>
                       <p className="text-sm text-gray-400 mt-1">{item.description}</p>
                     </div>
@@ -110,7 +183,23 @@ const Menu = () => {
           ))}
         </div>
 
+        <div className="flex justify-center gap-4 mt-12">
+          <button
+            onClick={() => setIsMenuModalOpen(true)}
+            className="px-8 py-4 bg-red-600 text-white rounded-full hover:bg-red-700 transition-colors"
+          >
+            {t('discoverFoodMenu')}
+          </button>
+          <button
+            onClick={() => setIsMenuModalOpen(true)}
+            className="px-8 py-4 border-2 border-red-600 text-red-600 rounded-full hover:bg-red-600 hover:text-white transition-colors"
+          >
+            {t('discoverDrinksMenu')}
+          </button>
+        </div>
       </div>
+
+      <MenuModal isOpen={isMenuModalOpen} onClose={() => setIsMenuModalOpen(false)} />
     </section>
   );
 };

@@ -1,88 +1,93 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronDown, Calendar, MapPin } from 'lucide-react';
-import ReservationModal from '@/components/ReservationsModal';
-import { useTranslation } from '@/hooks/useTranslations';
-import { sanityClient } from '../sanityClient';
-
+import { ChevronDown, FileText } from 'lucide-react';
+import ReservationModal from './ReservationsModal';
+import { useTranslation } from '../hooks/useTranslations';
 
 const Hero = () => {
   const { t } = useTranslation();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [description, setDescription] = useState('Liverpool Bar - Lisbon\'s Iconic Nightspots for Over 40 Years');
+  const [isReservationModalOpen, setIsReservationModalOpen] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    const fetchDescription = async () => {
-      try {
-        const query = `*[_type == "heroDescription"][0]{description}`;
-        const data = await sanityClient.fetch(query);
-        if (data) {
-          setDescription(data.description);
-        } else {
-          console.error("No data found for heroDescription.");
-        }
-      } catch (error) {
-        console.error("Error fetching hero description:", error);
-      }
+    const handleMouseMove = (e: MouseEvent) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 20;
+      const y = (e.clientY / window.innerHeight - 0.5) * 20;
+      setMousePosition({ x, y });
     };
-    fetchDescription();
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
   return (
-    <div className="relative h-screen">
-      {/* Video Background */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-red-950/90 via-black/70 to-black z-10 animated-gradient" />
-        <div className="absolute inset-0 bg-gradient-to-r from-red-900/30 via-transparent to-red-900/30 z-10 animated-gradient-fast" />
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full h-full object-cover"
-        >
-          <source
-            src="https://player.vimeo.com/external/492834881.sd.mp4?s=1a0c5531e2c6f4c73a32b9f7cc5d00c0e0f0f05e&profile_id=165&oauth2_token_id=57447761"
-            type="video/mp4"
-          />
-        </video>
+    <div className="relative h-screen overflow-hidden">
+      {/* Enhanced Animated Background */}
+      <div className="absolute inset-0">
+        {/* Base gradient layer with increased movement */}
+        <div className="absolute inset-0 bg-gradient-to-br from-red-950 via-black to-red-900 animated-gradient-intense opacity-80" />
+        
+        {/* Dynamic pulsing overlay */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-red-800/30 via-transparent to-red-900/30 animated-gradient-pulse" />
+        
+        {/* Mouse-following gradient */}
+        <div 
+          className="absolute inset-0 bg-gradient-radial from-red-600/10 to-transparent animated-gradient-fast"
+          style={{
+            transform: `translate(${mousePosition.x * 0.8}px, ${mousePosition.y * 0.8}px)`,
+            transition: 'transform 0.15s ease-out'
+          }}
+        />
+        
+        {/* Additional subtle wave effect */}
+        <div className="absolute inset-0 bg-gradient-to-t from-red-950/30 to-transparent animated-gradient-wave" />
       </div>
 
       {/* Content */}
-      <div className="relative z-20 h-full flex flex-col items-center justify-center text-center px-4">
-        <div className="flex items-center gap-2 mb-6 bg-black/30 px-4 py-2 rounded-full backdrop-blur-sm">
-          <MapPin size={16} className="text-red-600" />
-          <span className="text-sm font-medium text-gray-200">{t('pinkStreet')}</span>
+      <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4">
+        <div>
+          <h1 className="text-[4rem] md:text-[5rem] font-bold mb-6 leading-tight tracking-tight text-red-600 drop-shadow-[0_0_25px_rgba(220,38,38,0.5)]">
+            {t('tagline')}
+          </h1>
+          <p className="text-xl md:text-2xl text-white font-light mb-12 tracking-wide">
+            {t('subtitle')}
+          </p>
         </div>
-        <h1 className="text-4xl md:text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-red-600 animated-gradient">
-          {t('tagline')}
-        </h1>
-        <p className="text-xl md:text-2xl mb-8 text-gray-200 max-w-2xl">
-          {description}
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4">
+
+        <div className="flex flex-col sm:flex-row gap-6 fade-in-up">
           <a
             href="#about"
-            className="bg-gradient-to-r from-red-700 to-red-600 hover:from-red-800 hover:to-red-700 text-white px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 animated-gradient-fast"
+            className="px-8 py-4 border-2 border-white/10 hover:border-red-500/50 text-white rounded-full transition-all duration-500 hover:scale-110 hover:text-red-500"
           >
             {t('discoverStory')}
           </a>
-          <button
-            onClick={() => setIsModalOpen(true)}
-            className="bg-transparent border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-white px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
+          <a
+            href="#menu"
+            className="group relative px-8 py-4 bg-white/5 hover:bg-white/10 text-white rounded-full overflow-hidden transition-all duration-500 hover:scale-110"
           >
-            <Calendar size={20} />
-            {t('makeReservation')}
-          </button>
+            <span className="relative flex items-center justify-center gap-2">
+              <FileText size={20} />
+              {t('discoverMenu')}
+            </span>
+          </a>
         </div>
-      </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
-        <ChevronDown size={32} className="text-red-600" />
-      </div>
+        {/* Special Event Announcement */}
+        <div className="absolute bottom-32 left-0 right-0 flex justify-center">
+          <div className="bg-red-600/90 backdrop-blur-sm px-8 py-4 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300">
+            <p className="text-white text-lg font-medium">
+              {t('specialEvent')}
+            </p>
+          </div>
+        </div>
 
-      {/* Reservation Modal */}
-      <ReservationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
+          <ChevronDown size={32} className="text-white/30 animate-bounce" />
+        </div>
+
+        {/* Reservation Modal */}
+        <ReservationModal isOpen={isReservationModalOpen} onClose={() => setIsReservationModalOpen(false)} />
+      </div>
     </div>
   );
 };
