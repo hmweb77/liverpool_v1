@@ -1,3 +1,4 @@
+"use client"
 import React, { useState, useEffect } from 'react';
 import { Instagram } from 'lucide-react';
 import { useTranslation } from '@/hooks/useTranslations';

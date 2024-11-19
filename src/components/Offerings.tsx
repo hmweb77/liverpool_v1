@@ -1,10 +1,13 @@
+"use client";
 import React, { useState, useEffect } from 'react';
 import { Music2, Tv2, Speaker, Users } from 'lucide-react';
 import { useTranslation } from '../hooks/useTranslations';
+import { sanityClient } from '@/sanityClient';
 
 const Offerings = () => {
   const { t } = useTranslation();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [images, setImages] = useState<{ img1: string; img2: string }>({ img1: '', img2: '' });
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -15,6 +18,17 @@ const Offerings = () => {
 
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  useEffect(() => {
+    const fetchImages = async () => {
+      const data = await sanityClient.fetch(`*[_type == "offeringsImages"][0]{
+        "img1": img1.asset->url,
+        "img2": img2.asset->url
+      }`);
+      setImages({ img1: data?.img1 || '', img2: data?.img2 || '' });
+    };
+    fetchImages();
   }, []);
 
   const offerings = [
@@ -79,8 +93,8 @@ const Offerings = () => {
             }}
           >
             <img
-              src="https://lh3.googleusercontent.com/pw/AP1GczORU6JrOpa_xQ5CBHAfBqPup_aSwRSPDer_k_kBKZo4PUXPOEAIKRXz30bMZd0V8p25xjtOeWzSICmH2uH_AlfqDctE1BUN2P1FmN_hCI92JVTp7NT1wQ05z79ZQ4Q1-b3elruOcrdd9MewH6lVejw=w1920-h1280-s-no"
-              alt="Liverpool Bar Sports Night"
+              src={images.img1}
+              alt="Offerings Image 1"
               className="w-full h-full object-cover object-center transform group-hover:scale-110 transition-all duration-700"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-red-950 to-transparent animated-gradient opacity-70 group-hover:opacity-40 transition-opacity duration-500" />
@@ -116,8 +130,8 @@ const Offerings = () => {
             }}
           >
             <img
-              src="https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80"
-              alt="Liverpool Bar Atmosphere"
+              src={images.img2}
+              alt="Offerings Image 2"
               className="w-full h-full object-cover object-center transform group-hover:scale-110 transition-all duration-700"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-red-950 to-transparent animated-gradient opacity-70 group-hover:opacity-40 transition-opacity duration-500" />

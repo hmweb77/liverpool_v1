@@ -1,3 +1,4 @@
+"use client"
 import React, { useContext } from 'react';
 import { Menu, X, Globe, Calendar } from 'lucide-react';
 import LanguageContext from '../context/languageContext';

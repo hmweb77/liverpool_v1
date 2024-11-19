@@ -1,3 +1,4 @@
+"use client"
 import React from 'react';
 import { Clock, MapPin, Music } from 'lucide-react';
 import { useTranslation } from '../hooks/useTranslations';

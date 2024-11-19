@@ -1,128 +1,64 @@
-import React, { useState } from 'react';
+"use client";
+import React, { useEffect, useState } from 'react';
 import { GlassWater, UtensilsCrossed, Star } from 'lucide-react';
+import { sanityClient } from '@/sanityClient';
 import { useTranslation } from '../hooks/useTranslations';
 import MenuModal from './MenuModal';
+
+type MenuItem = {
+  name: string;
+  price: string;
+  description: string;
+};
+
+type MenuSection = {
+  category: string;
+  items: MenuItem[];
+};
+
+const fetchMenuData = async (type: 'drink' | 'food', t: (key: string) => string): Promise<MenuSection[]> => {
+  const query = `*[_type == "${type}"] | order(sortOrder asc){
+    "category": coalesce(category_${t('lang')}, category_en),
+    items[]{
+      "name": coalesce(name_${t('lang')}, name_en),
+      price,
+      "description": coalesce(description_${t('lang')}, description_en)
+    }
+  }`;
+
+  try {
+    const data = await sanityClient.fetch(query) as MenuSection[];
+    return data;
+  } catch (error) {
+    console.error(`Error fetching ${type} data:`, error);
+    return [];
+  }
+};
+
+  
+
+
+
 
 const Menu = () => {
   const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState<'drinks' | 'food'>('drinks');
   const [isMenuModalOpen, setIsMenuModalOpen] = useState(false);
+  const [menuData, setMenuData] = useState<{ drinks: MenuSection[]; food: MenuSection[] }>({
+    drinks: [],
+    food: [],
+  });
 
-  const menuItems = {
-    drinks: [
-      {
-        category: t('signatureCocktails'),
-        icon: <Star className="text-yellow-500" size={24} />,
-        items: [
-          {
-            name: 'Red Glory',
-            price: '€9.00',
-            description: t('redGloryDesc')
-          },
-          {
-            name: 'Mermaid Parade',
-            price: '€9.00',
-            description: t('mermaidParadeDesc')
-          },
-          {
-            name: 'Mexican Connection',
-            price: '€9.00',
-            description: t('mexicanConnectionDesc')
-          },
-          {
-            name: 'Summer Punch',
-            price: '€9.00',
-            description: t('summerPunchDesc')
-          }
-        ]
-      },
-      {
-        category: t('classicCocktails'),
-        icon: <Star className="text-yellow-500" size={24} />,
-        items: [
-          {
-            name: 'Caipirinha',
-            price: '€8.50',
-            description: t('caipirinhaDesc')
-          },
-          {
-            name: 'Sex on the Beach',
-            price: '€9.00',
-            description: t('sexOnTheBeachDesc')
-          },
-          {
-            name: 'Espresso Martini',
-            price: '€10.00',
-            description: t('espressoMartiniDesc')
-          },
-          {
-            name: 'Moscow Mule',
-            price: '€10.00',
-            description: t('moscowMuleDesc')
-          }
-        ]
-      }
-    ],
-    food: [
-      {
-        category: t('barSnacks'),
-        icon: <Star className="text-yellow-500" size={24} />,
-        items: [
-          {
-            name: t('bbqWings'),
-            price: '€5.90',
-            description: t('bbqWingsDesc')
-          },
-          {
-            name: t('loadedFries'),
-            price: '€5.90',
-            description: t('loadedFriesDesc')
-          },
-          {
-            name: t('sweetChilliNuggets'),
-            price: '€5.90',
-            description: t('sweetChilliNuggetsDesc')
-          },
-          {
-            name: t('cheetosMozzarella'),
-            price: '€4.90',
-            description: t('cheetosMozzarellaDesc')
-          },
-          {
-            name: t('petitGateau'),
-            price: '€4.00',
-            description: t('petitGateauDesc')
-          }
-        ]
-      },
-      {
-        category: t('theSpecials'),
-        icon: <Star className="text-yellow-500" size={24} />,
-        items: [
-          {
-            name: t('number1Burger'),
-            price: '€9.50',
-            description: t('number1BurgerDesc')
-          },
-          {
-            name: t('goatSalahBurger'),
-            price: '€9.50',
-            description: t('goatSalahBurgerDesc')
-          },
-          {
-            name: t('ynwaBurger'),
-            price: '€9.50',
-            description: t('ynwaBurgerDesc')
-          },
-          {
-            name: t('caesarSalad'),
-            price: '€8.50',
-            description: t('caesarSaladDesc')
-          }
-        ]
-      }
-    ]
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      const drinks = await fetchMenuData('drink', t);
+      const food = await fetchMenuData('food', t);
+      setMenuData({ drinks, food });
+    };
+    fetchData();
+  }, [t]);
+
+  const menuItems = activeTab === 'drinks' ? menuData.drinks : menuData.food;
 
   return (
     <section id="menu" className="py-20 bg-gradient-to-b from-black to-red-950 animated-gradient">
@@ -158,11 +94,11 @@ const Menu = () => {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">
-          {menuItems[activeTab].map((section, index) => (
+          {menuItems.map((section, index) => (
             <div key={index} className="bg-gradient-to-br from-gray-900/50 to-black/50 p-8 rounded-lg animated-gradient-fast">
               <h3 className="text-xl font-bold mb-6 text-red-600 flex items-center gap-2">
                 {section.category}
-                {section.icon}
+                <Star className="text-yellow-500" size={24} />
               </h3>
               <div className="space-y-6">
                 {section.items.map((item, itemIndex) => (

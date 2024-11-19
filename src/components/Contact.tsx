@@ -1,3 +1,4 @@
+"use client"
 import React, { useState } from 'react';
 import { Phone, Instagram, Clock, MapPin, Send } from 'lucide-react';
 import { useTranslation } from '../hooks/useTranslations';

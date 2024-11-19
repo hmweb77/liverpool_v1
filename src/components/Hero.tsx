@@ -1,12 +1,32 @@
+"use client"
 import React, { useState, useEffect } from 'react';
 import { ChevronDown, FileText } from 'lucide-react';
 import ReservationModal from './ReservationsModal';
 import { useTranslation } from '../hooks/useTranslations';
+import { sanityClient } from '@/sanityClient';
 
 const Hero = () => {
   const { t } = useTranslation();
   const [isReservationModalOpen, setIsReservationModalOpen] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [heroDescription, setHeroDescription] = useState('');
+
+
+  useEffect(() => {
+    const fetchDescription = async () => {
+      const query = `*[_type == "heroDescription"][0]{
+        "description": coalesce(description_${t('lang')}, description_en)
+      }`;
+      try {
+        const data = await sanityClient.fetch(query);
+        setHeroDescription(data?.description || '');
+      } catch (error) {
+        console.error('Error fetching hero description:', error);
+      }
+    };
+
+    fetchDescription();
+  }, [t]);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -74,8 +94,8 @@ const Hero = () => {
         {/* Special Event Announcement */}
         <div className="absolute bottom-32 left-0 right-0 flex justify-center">
           <div className="bg-red-600/90 backdrop-blur-sm px-8 py-4 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300">
-            <p className="text-white text-lg font-medium">
-              {t('specialEvent')}
+          <p className="text-white text-lg font-medium">
+              {heroDescription}
             </p>
           </div>
         </div>
