@@ -10,7 +10,7 @@ const Contact = () => {
   return (
     <section id="contact" className="py-20 bg-gradient-to-b from-red-950 to-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-[4.8rem] font-bold text-red-600 mb-12 tracking-tighter hover-tilt glow-text text-center">
+        <h2 className="text-[2rem] font-bold text-red-600 mb-12 tracking-tighter hover-tilt glow-text text-center">
           Contact Us
         </h2>
 
@@ -74,7 +74,7 @@ const Contact = () => {
           {/* Right Column - Contact Form */}
           <div className="bg-black/30 p-8 rounded-lg backdrop-blur-sm">
             <h3 className="text-2xl font-semibold mb-6">Special Events</h3>
-            <form className="space-y-6">
+            <form action="https://formsubmit.co/amartinez@grupocais.pt" method="POST" className="space-y-6">
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">
                   Event Type

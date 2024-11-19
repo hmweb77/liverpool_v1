@@ -41,7 +41,7 @@ const Partners = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 
-            className="text-[4.8rem] font-bold text-red-600 mb-4 tracking-tighter hover-tilt glow-text"
+            className="text-[2rem] font-bold text-red-600 mb-4 tracking-tighter hover-tilt glow-text"
             style={{ 
               transform: `translate(${mousePosition.x * 0.5}px, ${mousePosition.y * 0.5}px)`,
               transition: 'transform 0.1s ease-out'

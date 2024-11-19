@@ -45,7 +45,7 @@ const Gallery = () => {
   return (
     <section id="gallery" className="py-20 bg-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-[4.8rem] font-bold text-red-600 mb-12 tracking-tighter hover-tilt glow-text text-center">
+        <h2 className="text-[2rem] font-bold text-red-600 mb-12 tracking-tighter hover-tilt glow-text text-center">
           {t('ourGallery')}
         </h2>
 
