@@ -1,6 +1,7 @@
-"use client"
-import React from 'react';
+"use client";
+import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
+import { sanityClient } from '@/sanityClient';
 
 interface MenuModalProps {
   isOpen: boolean;
@@ -8,6 +9,32 @@ interface MenuModalProps {
 }
 
 const MenuModal: React.FC<MenuModalProps> = ({ isOpen, onClose }) => {
+  const [dynamicLink, setDynamicLink] = useState<{ label: string; url: string }>({
+    label: '',
+    url: '',
+  });
+
+  useEffect(() => {
+    const fetchLink = async () => {
+      const query = `*[_type == "dynamicLink"][0]{
+        label,
+        url
+      }`;
+
+      try {
+        const data = await sanityClient.fetch(query);
+        setDynamicLink({
+          label: data?.label || 'Default Label',
+          url: data?.url || '',
+        });
+      } catch (error) {
+        console.error('Error fetching dynamic link:', error);
+      }
+    };
+
+    fetchLink();
+  }, []);
+
   if (!isOpen) return null;
 
   return (
@@ -26,13 +53,20 @@ const MenuModal: React.FC<MenuModalProps> = ({ isOpen, onClose }) => {
           </div>
 
           <div className="w-full h-[80vh]">
-            <iframe
-              src="https://drive.google.com/file/d/1QPOjXpavf14F8aN2o8QXKHQbJsZK9j_K/preview"
-              width="100%"
-              height="100%"
-              className="rounded-lg"
-              allow="autoplay"
-            />
+            {dynamicLink.url ? (
+              <iframe
+                src={dynamicLink.url}
+                width="100%"
+                height="100%"
+                className="rounded-lg"
+                allow="autoplay"
+              />
+            ) : (
+              <p className="text-center text-gray-400">Loading...</p>
+            )}
+          </div>
+          <div className="mt-4 text-center">
+            <p className="text-gray-300">{dynamicLink.label}</p>
           </div>
         </div>
       </div>
