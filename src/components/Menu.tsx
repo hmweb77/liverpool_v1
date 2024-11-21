@@ -1,9 +1,9 @@
 "use client";
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { GlassWater, UtensilsCrossed, Star } from 'lucide-react';
 import { sanityClient } from '@/sanityClient';
-import { useTranslation } from '../hooks/useTranslations';
 import MenuModal from './MenuModal';
+import LanguageContext from '@/context/languageContext'; // Update the path to your context file
 
 type MenuItem = {
   name: string;
@@ -16,13 +16,13 @@ type MenuSection = {
   items: MenuItem[];
 };
 
-const fetchMenuData = async (type: 'drink' | 'food', t: (key: string) => string): Promise<MenuSection[]> => {
-  const query = `*[_type == "${type}"] | order(sortOrder asc){
-    "category": coalesce(category_${t('lang')}, category_en),
+const fetchDrinksData = async (lang: 'en' | 'pt'): Promise<MenuSection[]> => {
+  const query = `*[_type == "drink"] | order(sortOrder asc){
+    "category": coalesce(category_${lang}, category_en),
     items[]{
-      "name": coalesce(name_${t('lang')}, name_en),
+      "name": coalesce(name_${lang}, name_en),
       price,
-      "description": coalesce(description_${t('lang')}, description_en)
+      "description": coalesce(description_${lang}, description_en)
     }
   }`;
 
@@ -30,18 +30,32 @@ const fetchMenuData = async (type: 'drink' | 'food', t: (key: string) => string)
     const data = await sanityClient.fetch(query) as MenuSection[];
     return data;
   } catch (error) {
-    console.error(`Error fetching ${type} data:`, error);
+    console.error("Error fetching drinks data:", error);
     return [];
   }
 };
 
-  
+const fetchFoodsData = async (lang: 'en' | 'pt'): Promise<MenuSection[]> => {
+  const query = `*[_type == "food"] | order(sortOrder asc){
+    "category": coalesce(category_${lang}, category_en),
+    items[]{
+      "name": coalesce(name_${lang}, name_en),
+      price,
+      "description": coalesce(description_${lang}, description_en)
+    }
+  }`;
 
-
-
+  try {
+    const data = await sanityClient.fetch(query) as MenuSection[];
+    return data;
+  } catch (error) {
+    console.error("Error fetching foods data:", error);
+    return [];
+  }
+};
 
 const Menu = () => {
-  const { t } = useTranslation();
+  const { language } = useContext(LanguageContext); // Access the language from context
   const [activeTab, setActiveTab] = useState<'drinks' | 'food'>('drinks');
   const [isMenuModalOpen, setIsMenuModalOpen] = useState(false);
   const [menuData, setMenuData] = useState<{ drinks: MenuSection[]; food: MenuSection[] }>({
@@ -51,12 +65,12 @@ const Menu = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const drinks = await fetchMenuData('drink', t);
-      const food = await fetchMenuData('food', t);
+      const drinks = await fetchDrinksData(language);
+      const food = await fetchFoodsData(language);
       setMenuData({ drinks, food });
     };
     fetchData();
-  }, [t]);
+  }, [language]);
 
   const menuItems = activeTab === 'drinks' ? menuData.drinks : menuData.food;
 
@@ -65,7 +79,7 @@ const Menu = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-[2rem] font-bold text-red-600 mb-4 tracking-tighter hover-tilt glow-text">
-            {t('ourBestsellers')}
+            {language === 'en' ? 'Our Bestsellers' : 'Os Mais Vendidos'}
           </h2>
           <div className="flex justify-center space-x-4 mb-8">
             <button
@@ -77,7 +91,7 @@ const Menu = () => {
               }`}
             >
               <GlassWater className="mr-2" size={20} />
-              {t('drinks')}
+              {language === 'en' ? 'Drinks' : 'Bebidas'}
             </button>
             <button
               onClick={() => setActiveTab('food')}
@@ -88,7 +102,7 @@ const Menu = () => {
               }`}
             >
               <UtensilsCrossed className="mr-2" size={20} />
-              {t('food')}
+              {language === 'en' ? 'Food' : 'Comida'}
             </button>
           </div>
         </div>
@@ -124,13 +138,13 @@ const Menu = () => {
             onClick={() => setIsMenuModalOpen(true)}
             className="px-8 py-4 bg-red-600 text-white rounded-full hover:bg-red-700 transition-colors"
           >
-            {t('discoverFoodMenu')}
+            {language === 'en' ? 'Discover Food Menu' : 'Descubra o Menu de Comidas'}
           </button>
           <button
             onClick={() => setIsMenuModalOpen(true)}
             className="px-8 py-4 border-2 border-red-600 text-red-600 rounded-full hover:bg-red-600 hover:text-white transition-colors"
           >
-            {t('discoverDrinksMenu')}
+            {language === 'en' ? 'Discover Drinks Menu' : 'Descubra o Menu de Bebidas'}
           </button>
         </div>
       </div>
