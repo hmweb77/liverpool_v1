@@ -51,7 +51,6 @@ const MenuModal: React.FC<MenuModalProps> = ({ isOpen, onClose }) => {
               <X size={24} />
             </button>
           </div>
-
           <div className="w-full h-[80vh]">
             {dynamicLink.url ? (
               <iframe
