@@ -1,32 +1,32 @@
+
+
+
 "use client";
 import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 import { sanityClient } from '@/sanityClient';
 
-interface MenuModalProps {
+interface DrinkModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-const MenuModal: React.FC<MenuModalProps> = ({ isOpen, onClose }) => {
-  const [dynamicLink, setDynamicLink] = useState<{ label: string; url: string }>({
+const DrinkModal: React.FC<DrinkModalProps> = ({ isOpen, onClose }) => {
+  const [drinkLink, setDrinkLink] = useState<{ label: string; url: string }>({
     label: '',
     url: '',
   });
 
   useEffect(() => {
     const fetchLink = async () => {
-      const query = `*[_type == "dynamicLink"][0]{
+      const query = `*[_type == "drinkLink"][0]{
         label,
         url
       }`;
-
-
+  
       try {
-   
         const data = await sanityClient.fetch(query);
-        
-        setDynamicLink({
+        setDrinkLink({
           label: data?.label || 'Default Label',
           url: data?.url || '',
         });
@@ -34,9 +34,13 @@ const MenuModal: React.FC<MenuModalProps> = ({ isOpen, onClose }) => {
         console.error('Error fetching dynamic link:', error);
       }
     };
-
-    fetchLink();
-  }, []);
+  
+    if (isOpen) {
+      fetchLink(); // Fetch fresh data every time the modal opens
+    }
+  }, [isOpen]);
+  
+  
 
   if (!isOpen) return null;
 
@@ -55,9 +59,9 @@ const MenuModal: React.FC<MenuModalProps> = ({ isOpen, onClose }) => {
             </button>
           </div>
           <div className="w-full h-[80vh]">
-            {dynamicLink.url ? (
+            {drinkLink.url ? (
               <iframe
-                src={dynamicLink.url}
+                src={drinkLink.url}
                 width="100%"
                 height="100%"
                 className="rounded-lg"
@@ -68,7 +72,7 @@ const MenuModal: React.FC<MenuModalProps> = ({ isOpen, onClose }) => {
             )}
           </div>
           <div className="mt-4 text-center">
-            <p className="text-gray-300">{dynamicLink.label}</p>
+            <p className="text-gray-300">{drinkLink.label}</p>
           </div>
         </div>
       </div>
@@ -76,4 +80,4 @@ const MenuModal: React.FC<MenuModalProps> = ({ isOpen, onClose }) => {
   );
 };
 
-export default MenuModal;
+export default DrinkModal;

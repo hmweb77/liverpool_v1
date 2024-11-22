@@ -1,13 +1,13 @@
 export default {
-    name: 'dynamicLink',
+    name: 'drinkLink',
     type: 'document',
-    title: 'Food Link',
+    title: 'Drink Link',
     fields: [
       {
         name: 'label',
         type: 'string',
         title: 'Label',
-        description: 'The text displayed for the link (e.g., "Link to to menu").',
+        description: 'The text displayed for the link (e.g., "Link to to drink").',
       },
       {
         name: 'url',
@@ -19,4 +19,5 @@ export default {
         }),
       },
     ],
-  };
+    };
+    

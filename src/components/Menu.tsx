@@ -3,6 +3,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import { GlassWater, UtensilsCrossed, Star } from 'lucide-react';
 import { sanityClient } from '@/sanityClient';
 import MenuModal from './MenuModal';
+import DrinkModal from './DrinkModal';
 import LanguageContext from '@/context/languageContext'; // Update the path to your context file
 
 type MenuItem = {
@@ -58,6 +59,7 @@ const Menu = () => {
   const { language } = useContext(LanguageContext); // Access the language from context
   const [activeTab, setActiveTab] = useState<'drinks' | 'food'>('drinks');
   const [isMenuModalOpen, setIsMenuModalOpen] = useState(false);
+  const [isDrinkModalOpen, setIsDrinkModalOpen] = useState(false);
   const [menuData, setMenuData] = useState<{ drinks: MenuSection[]; food: MenuSection[] }>({
     drinks: [],
     food: [],
@@ -136,12 +138,14 @@ const Menu = () => {
         <div className="flex justify-center gap-4 mt-12">
           <button
             onClick={() => setIsMenuModalOpen(true)}
+  
             className="px-8 py-4 bg-red-600 text-white rounded-full hover:bg-red-700 transition-colors"
           >
             {language === 'en' ? 'Discover Food Menu' : 'Descubra o Menu de Comidas'}
           </button>
           <button
-            onClick={() => setIsMenuModalOpen(true)}
+            onClick={() => setIsDrinkModalOpen(true)}
+
             className="px-8 py-4 border-2 border-red-600 text-red-600 rounded-full hover:bg-red-600 hover:text-white transition-colors"
           >
             {language === 'en' ? 'Discover Drinks Menu' : 'Descubra o Menu de Bebidas'}
@@ -150,6 +154,7 @@ const Menu = () => {
       </div>
 
       <MenuModal isOpen={isMenuModalOpen} onClose={() => setIsMenuModalOpen(false)} />
+      <DrinkModal isOpen={isDrinkModalOpen} onClose={() => setIsDrinkModalOpen(false)} />
     </section>
   );
 };
