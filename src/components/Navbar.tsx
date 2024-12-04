@@ -1,35 +1,45 @@
-"use client"
-import React, { useContext } from 'react';
-import { Menu, X, Globe, Calendar } from 'lucide-react';
-import LanguageContext from '../context/languageContext';
+"use client";
+import React, { useContext } from "react";
+import { Menu, X, Globe, Calendar } from "lucide-react";
+import LanguageContext from "../context/languageContext";
 
-import ReservationModal from './ReservationsModal';
+import ReservationModal from "./ReservationsModal";
 interface NavbarProps {
   isScrolled: boolean;
 }
 
+const navItemsTranslations = {
+  en: ["About", "Offerings", "Menu", "Gallery", "Partners", "Contact"],
+  pt: ["Sobre", "Ofertas", "Menu", "Galeria", "Parceiros", "Contacto"],
+};
+
 const Navbar: React.FC<NavbarProps> = ({ isScrolled }) => {
   const [isOpen, setIsOpen] = React.useState(false);
-  const [isReservationModalOpen, setIsReservationModalOpen] = React.useState(false);
+  const [isReservationModalOpen, setIsReservationModalOpen] =
+    React.useState(false);
   const { language, setLanguage } = useContext(LanguageContext);
 
-  const navItems = ['About', 'Offerings', 'Menu', 'Gallery', 'Partners', 'Contact'];
+  const navItems = navItemsTranslations[language];
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-black/90 backdrop-blur-sm' : 'bg-transparent'
-    }`}>
+    <nav
+      className={`fixed w-full z-50 transition-all duration-300 ${
+        isScrolled ? "bg-black/90 backdrop-blur-sm" : "bg-transparent"
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center space-x-3">
-            <img 
-              src="https://lh3.googleusercontent.com/pw/AP1GczPFDsDkE7Mx92X_byKtLxvfIxX8i4-kVaoSbTxnIX6uNpcl2jjTJBG8y2Wdn7aPI_PZfMxl8qU-68WrifCz1ykvkqsG4EbcRLaLO7t3cfyhSdEyEBF-2252f-cBkuOzpilnt0n4lZSEWeGIls8kXZo=w275-h266-s-no-gm?authuser=0"
+            <img
+              src="/logo.png"
               alt="Liverpool Bar Logo"
               className="h-14 w-14 object-contain transition-transform duration-300 hover:scale-110"
             />
-            <span className="text-red-600 font-bold text-xl">LIVERPOOL BAR</span>
+            <span className="text-red-600 font-bold text-xl">
+              LIVERPOOL BAR
+            </span>
           </div>
-          
+
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-4">
               {navItems.map((item) => (
@@ -46,10 +56,10 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled }) => {
                 className="flex items-center gap-2 text-white bg-red-600 hover:bg-red-700 px-4 py-2 rounded-full transition-colors"
               >
                 <Calendar size={18} />
-                Make a Reservation
+                {language === "en" ? "Make a Reservation" : "Reservar"}
               </button>
               <button
-                onClick={() => setLanguage(language === 'en' ? 'pt' : 'en')}
+                onClick={() => setLanguage(language === "en" ? "pt" : "en")}
                 className="text-gray-300 hover:text-red-600 transition-colors px-3 py-2 rounded-md text-sm font-medium flex items-center gap-2"
               >
                 <Globe size={18} />
@@ -91,11 +101,11 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled }) => {
               className="flex items-center gap-2 text-white bg-red-600 hover:bg-red-700 px-4 py-2 rounded-full transition-colors w-full"
             >
               <Calendar size={18} />
-              Make a Reservation
+              {language === "en" ? "Make a Reservation" : "Reservar"}
             </button>
             <button
               onClick={() => {
-                setLanguage(language === 'en' ? 'pt' : 'en');
+                setLanguage(language === "en" ? "pt" : "en");
                 setIsOpen(false);
               }}
               className="text-gray-300 hover:text-red-600 block px-3 py-2 rounded-md text-base font-medium w-full text-left flex items-center gap-2"
@@ -108,7 +118,10 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled }) => {
       )}
 
       {/* Reservation Modal */}
-      <ReservationModal isOpen={isReservationModalOpen} onClose={() => setIsReservationModalOpen(false)} />
+      <ReservationModal
+        isOpen={isReservationModalOpen}
+        onClose={() => setIsReservationModalOpen(false)}
+      />
     </nav>
   );
 };

@@ -1,17 +1,46 @@
-"use client"
-import React, { useState } from 'react';
-import { Phone, Instagram, Clock, MapPin, Send } from 'lucide-react';
-import { useTranslation } from '../hooks/useTranslations';
+"use client";
+import React, { useContext, useState } from "react";
+import { Phone, Instagram, Clock, MapPin, Send } from "lucide-react";
+import { useTranslation } from "../hooks/useTranslations";
+import LanguageContext from "@/context/languageContext";
+
+const form = {
+  en: {
+    contact: "Contact Us",
+    eventType: "Event Type",
+    options: ["privatization", "birthday", "bachelor", "other"],
+    name: "Name",
+    phone: "Phone Number",
+    email: "Email",
+    message: "Message",
+    submit: "Send Message",
+  },
+  pt: {
+    contact: "Contacto",
+    eventType: "Tipo de Evento",
+    options: ["privatização", "aniversário", "bachelor", "outro"],
+    name: "Nome",
+    phone: "Telefone",
+    email: "Email",
+    message: "Mensagem",
+    submit: "Enviar Mensagem",
+  },
+};
 
 const Contact = () => {
   const { t } = useTranslation();
-  const [eventType, setEventType] = useState('privatization');
+  const { language, setLanguage } = useContext(LanguageContext);
+
+  const [eventType, setEventType] = useState("privatization");
 
   return (
-    <section id="contact" className="py-20 bg-gradient-to-b from-red-950 to-black">
+    <section
+      id="contact"
+      className="py-20 bg-gradient-to-b from-red-950 to-black"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-[2rem] font-bold text-red-600 mb-12 tracking-tighter hover-tilt glow-text text-center">
-          Contact Us
+          {form[language].contact}
         </h2>
 
         <div className="grid md:grid-cols-2 gap-12 items-start">
@@ -21,34 +50,36 @@ const Contact = () => {
               <div className="flex items-center space-x-4">
                 <MapPin className="text-red-600 flex-shrink-0" />
                 <div>
-                  <h3 className="font-semibold mb-1">{t('location')}</h3>
-                  <p className="text-gray-300">
-                    {t('addressFull')}
-                  </p>
+                  <h3 className="font-semibold mb-1">{t("location")}</h3>
+                  <p className="text-gray-300">{t("addressFull")}</p>
                 </div>
               </div>
               <div className="flex items-center space-x-4">
                 <Clock className="text-red-600 flex-shrink-0" />
                 <div>
-                  <h3 className="font-semibold mb-1">{t('openingHours')}</h3>
+                  <h3 className="font-semibold mb-1">{t("openingHours")}</h3>
                   <div className="text-gray-300">
-                    <p className="mb-2">Mon-Fri: 5PM-12AM</p>
+                    <p className="mb-2">
+                      {t("monFri")}: {t("monFriHours")}
+                    </p>
                     <hr className="border-gray-700 my-2" />
-                    <p>Sat-Sun: 11AM-12AM</p>
+                    <p>
+                      {t("satSun")}: {t("satSunHours")}
+                    </p>
                   </div>
                 </div>
               </div>
               <div className="flex items-center space-x-4">
                 <Phone className="text-red-600 flex-shrink-0" />
                 <div>
-                  <h3 className="font-semibold mb-1">{t('phone')}</h3>
+                  <h3 className="font-semibold mb-1">{t("phone")}</h3>
                   <p className="text-gray-300">916 452 754</p>
                 </div>
               </div>
               <div className="flex items-center space-x-4">
                 <Instagram className="text-red-600 flex-shrink-0" />
                 <div>
-                  <h3 className="font-semibold mb-1">{t('social')}</h3>
+                  <h3 className="font-semibold mb-1">{t("social")}</h3>
                   <a
                     href="https://instagram.com/liverpoolbarlisboa"
                     target="_blank"
@@ -74,26 +105,32 @@ const Contact = () => {
           {/* Right Column - Contact Form */}
           <div className="bg-black/30 p-8 rounded-lg backdrop-blur-sm">
             <h3 className="text-2xl font-semibold mb-6">Special Events</h3>
-            <form action="https://formsubmit.co/amartinez@grupocais.pt" method="POST" className="space-y-6">
+            <form
+              action="https://formsubmit.co/amartinez@grupocais.pt"
+              method="POST"
+              className="space-y-6"
+            >
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">
-                  Event Type
+                  {form[language].eventType}
                 </label>
                 <select
                   value={eventType}
                   onChange={(e) => setEventType(e.target.value)}
                   className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-red-600"
                 >
-                  <option value="privatization">Privatization</option>
-                  <option value="birthday">Birthday Party</option>
-                  <option value="bachelor">Bachelor Party</option>
-                  <option value="other">Other Special Request</option>
+                  <option value="privatization">
+                    {form[language].options[0]}
+                  </option>
+                  <option value="birthday">{form[language].options[1]}</option>
+                  <option value="bachelor">{form[language].options[2]}</option>
+                  <option value="other">{form[language].options[3]}</option>
                 </select>
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">
-                  Name
+                  {form[language].name}
                 </label>
                 <input
                   type="text"
@@ -104,7 +141,7 @@ const Contact = () => {
 
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">
-                  Phone Number
+                  {form[language].phone}
                 </label>
                 <input
                   type="tel"
@@ -115,7 +152,7 @@ const Contact = () => {
 
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">
-                  Email
+                  {form[language].email}
                 </label>
                 <input
                   type="email"
@@ -126,7 +163,7 @@ const Contact = () => {
 
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">
-                  Message
+                  {form[language].message}
                 </label>
                 <textarea
                   rows={4}
@@ -140,7 +177,7 @@ const Contact = () => {
                 className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2 focus:ring-offset-gray-900 transition-colors"
               >
                 <Send size={18} />
-                Send Message
+                {form[language].submit}
               </button>
             </form>
           </div>

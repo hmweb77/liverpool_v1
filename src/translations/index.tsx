@@ -24,21 +24,28 @@ export const translations: Translations = {
 
     // About
     legacyTitle: "A Legacy of Nights to Remember",
-    legacyText: "Located on the famous Pink Street, Liverpool Bar has been the heart of Lisbon's nightlife for over four decades. Originally named after cities to attract guests from afar, we've transformed into a unique space for sports, music, and unforgettable moments.",
+    legacyText:
+      "Located on the iconic Pink Street, Liverpool Bar was born in a time when port city names were strategically chosen to attract sailors who disembarked from ships in Lisbon's port. Surrounded by other bars with equally catchy names, Liverpool stood out for its bohemian and inspiring atmosphere, where unforgettable nights took shape to the sound of animated conversations and enthusiastic cheers. Over the decades, the space evolved, adapting to the new times, becoming also a meeting point for sports lovers in general and Liverpool F.C. fans, thus continuing to be a legacy of stories that intertwine and memories that continue to come to life. Today, it is one of the few on the street that still preserves its origin and essence, keeping alive the charm and authenticity that made it unique.",
     openingHours: "Opening Hours",
     location: "Location",
     address: "R. Nova do Carvalho 21, Lisbon",
     liveDjSets: "Live DJ Sets",
-
+    monFri: "Mon-Fri",
+    satSun: "Sat-Sun",
+    monFriHours: "17h00 - 06h00",
+    satSunHours: "11h00 - 06h00",
     // Offerings
     whatWeOffer: "What We Offer",
-    offeringsSubtitle: "Experience the perfect blend of entertainment and atmosphere that has made us a Lisbon nightlife institution.",
+    offeringsSubtitle:
+      "Experience the perfect blend of entertainment and atmosphere that has made us a Lisbon nightlife institution.",
     liveMusic: "Live Music",
     liveMusicDesc: "Regular DJ sets and live performances throughout the week.",
     sportsEvents: "Sports Events",
-    sportsEventsDesc: "Watch major football matches and sporting events in high definition.",
+    sportsEventsDesc:
+      "Watch major football matches and sporting events in high definition.",
     premiumSound: "Premium Sound",
-    premiumSoundDesc: "State-of-the-art sound system for an immersive audio experience.",
+    premiumSoundDesc:
+      "State-of-the-art sound system for an immersive audio experience.",
     privateEvents: "Private Events",
     privateEventsDesc: "Host your special occasions in our unique venue.",
     unforgettableNight: "Join us for an unforgettable night",
@@ -60,14 +67,15 @@ export const translations: Translations = {
 
     // Menu Items - Drinks
     redGloryDesc: "Beefeater gin, Cointreau, strawberry & sparkling wine",
-    mermaidParadeDesc: "Aperol, raspberry liquor, orange juice, lemon & egg white",
+    mermaidParadeDesc:
+      "Aperol, raspberry liquor, orange juice, lemon & egg white",
     mexicanConnectionDesc: "Olmeca, Safari, passion fruit & lemon",
     summerPunchDesc: "Bombay Sapphire, St-Germain, Martini Rosso & ginger ale",
     caipirinhaDesc: "Classic Brazilian cocktail with cachaça, lime, and sugar",
     sexOnTheBeachDesc: "Vodka, peach schnapps, orange juice, and cranberry",
     espressoMartiniDesc: "Fresh espresso, vodka, and coffee liqueur",
     moscowMuleDesc: "Vodka, ginger beer, and fresh lime juice",
-    
+
     // Menu Items - Food
     bbqWings: "BBQ Chicken Wings",
     bbqWingsDesc: "Crispy wings tossed in house-made BBQ sauce",
@@ -81,13 +89,17 @@ export const translations: Translations = {
     petitGateauDesc: "Served with a scoop of vanilla ice cream",
 
     number1Burger: "Number #1 Burger",
-    number1BurgerDesc: "200g Beef, cheese, crispy bacon, lettuce, tomato, grilled onion, fried egg and smoked BBQ sauce",
+    number1BurgerDesc:
+      "200g Beef, cheese, crispy bacon, lettuce, tomato, grilled onion, fried egg and smoked BBQ sauce",
     goatSalahBurger: "G.O.A.T. SALAH Burger",
-    goatSalahBurgerDesc: "200g Beef, chèvre cheese, lettuce, tomato, grilled onion and fig jam",
+    goatSalahBurgerDesc:
+      "200g Beef, chèvre cheese, lettuce, tomato, grilled onion and fig jam",
     ynwaBurger: "You'll Never Walk Alone Burger",
-    ynwaBurgerDesc: "200g Beef, cheese, crispy bacon, lettuce, tomato, grilled onion, fried egg and smoked BBQ sauce",
+    ynwaBurgerDesc:
+      "200g Beef, cheese, crispy bacon, lettuce, tomato, grilled onion, fried egg and smoked BBQ sauce",
     caesarSalad: "Caesar Salad",
-    caesarSaladDesc: "Romaine lettuce, grilled chicken, croutons, parmesan cheese, caesar dressing",
+    caesarSaladDesc:
+      "Romaine lettuce, grilled chicken, croutons, parmesan cheese, caesar dressing",
 
     // Partners
     ourPartners: "Our Partners",
@@ -113,7 +125,7 @@ export const translations: Translations = {
     specialRequests: "Special Requests",
     specialRequestsPlaceholder: "Any special requests or preferences...",
     submitReservation: "Submit Reservation",
-    moreThanTen: "More than 10"
+    moreThanTen: "More than 10",
   },
   pt: {
     // Navbar
@@ -126,7 +138,8 @@ export const translations: Translations = {
 
     // Hero
     tagline: "Entre na História, Viva a Noite",
-    subtitle: "Liverpool Bar - O Ponto Icónico da Noite de Lisboa há Mais de 40 Anos",
+    subtitle:
+      "Liverpool Bar - O Ponto Icónico da Noite de Lisboa há Mais de 40 Anos",
     discoverStory: "Descubra a Nossa História",
     makeReservation: "Fazer Reserva",
     discoverMenu: "Descubra o nosso Menu",
@@ -134,23 +147,32 @@ export const translations: Translations = {
 
     // About
     legacyTitle: "Um Legado de Noites Memoráveis",
-    legacyText: "Localizado na famosa Rua Cor-de-Rosa, o Liverpool Bar tem sido o coração da vida noturna de Lisboa por mais de quatro décadas. Originalmente nomeado após cidades para atrair visitantes de longe, transformámo-nos num espaço único para desporto, música e momentos inesquecíveis.",
+    legacyText:
+      "Localizado na icônica Rua Cor-de-Rosa, o Liverpool Bar nasceu numa época em que nomes de cidades portuárias eram escolhidos estrategicamente para atrair os marinheiros que desembarcavam dos navios no porto de Lisboa. Rodeado por outros bares com nomes também chamativos, o Liverpool destacava-se pelo seu ambiente boêmio e inspirador, onde noites inesquecíveis tomavam forma ao som de conversas animadas e brindes entusiásticos. Ao longo das décadas, o espaço evoluiu, adaptando-se aos novos tempos, tornando-se também um ponto de encontro para os amantes de desporto em geral e adeptos do Liverpool F.C., continuando assim a ser um legado de histórias que se cruzam e memórias que continuam a ganhar vida.Hoje, é um dos poucos na rua que ainda preserva a sua origem e essência, mantendo vivo o charme e a autenticidade que o tornaram único.",
     openingHours: "Horário",
     location: "Localização",
     address: "R. Nova do Carvalho 21, Lisboa",
     liveDjSets: "DJ Sets ao Vivo",
+    monFri: "Seg-Sex",
+    monFriHours: "17h-00h - 06h00",
+    satSun: "Sáb-Dom",
+    satSunHours: "11h00 - 06h00",
 
     // Offerings
     whatWeOffer: "O Que Oferecemos",
-    offeringsSubtitle: "Experimente a combinação perfeita de entretenimento e ambiente que nos tornou uma instituição da vida noturna de Lisboa.",
+    offeringsSubtitle:
+      "Experimente a combinação perfeita de entretenimento e ambiente que nos tornou uma instituição da vida noturna de Lisboa.",
     liveMusic: "Música ao Vivo",
     liveMusicDesc: "DJ sets regulares e performances ao vivo durante a semana.",
     sportsEvents: "Eventos Desportivos",
-    sportsEventsDesc: "Assista aos principais jogos de futebol e eventos desportivos em alta definição.",
+    sportsEventsDesc:
+      "Assista aos principais jogos de futebol e eventos desportivos em alta definição.",
     premiumSound: "Som Premium",
-    premiumSoundDesc: "Sistema de som de última geração para uma experiência sonora imersiva.",
+    premiumSoundDesc:
+      "Sistema de som de última geração para uma experiência sonora imersiva.",
     privateEvents: "Eventos Privados",
-    privateEventsDesc: "Organize suas ocasiões especiais no nosso espaço único.",
+    privateEventsDesc:
+      "Organize suas ocasiões especiais no nosso espaço único.",
     unforgettableNight: "Junte-se a nós para uma noite inesquecível",
     unforgettableSportsNight: "Aqui está uma noite desportiva inesquecível!",
 
@@ -166,23 +188,25 @@ export const translations: Translations = {
     discoverDrinksMenu: "Descubra o nosso Menu de Bebidas",
 
     // Gallery
-    ourGallery: "Nossa Galeria",
+    ourGallery: "Galeria",
 
     // Menu Items - Drinks
     redGloryDesc: "Gin Beefeater, Cointreau, morango e espumante",
-    mermaidParadeDesc: "Aperol, licor de framboesa, sumo de laranja, limão e clara de ovo",
+    mermaidParadeDesc:
+      "Aperol, licor de framboesa, sumo de laranja, limão e clara de ovo",
     mexicanConnectionDesc: "Olmeca, Safari, maracujá e limão",
     summerPunchDesc: "Bombay Sapphire, St-Germain, Martini Rosso e ginger ale",
     caipirinhaDesc: "Cocktail brasileiro clássico com cachaça, lima e açúcar",
     sexOnTheBeachDesc: "Vodka, licor de pêssego, sumo de laranja e arando",
     espressoMartiniDesc: "Café expresso, vodka e licor de café",
     moscowMuleDesc: "Vodka, cerveja de gengibre e sumo de lima fresco",
-    
+
     // Menu Items - Food
     bbqWings: "Asinhas de Frango BBQ",
     bbqWingsDesc: "Asinhas crocantes com molho BBQ caseiro",
     loadedFries: "Batatas Carregadas",
-    loadedFriesDesc: "Batatas fritas com queijo cheddar derretido e bacon crocante",
+    loadedFriesDesc:
+      "Batatas fritas com queijo cheddar derretido e bacon crocante",
     sweetChilliNuggets: "Nuggets Sweet Chilli",
     sweetChilliNuggetsDesc: "Nuggets de frango tenros com molho sweet chilli",
     cheetosMozzarella: "Palitos de Mozzarella Cheetos",
@@ -191,16 +215,20 @@ export const translations: Translations = {
     petitGateauDesc: "Servido com uma bola de gelado de baunilha",
 
     number1Burger: "Hambúrguer Número #1",
-    number1BurgerDesc: "200g de carne, queijo, bacon crocante, alface, tomate, cebola grelhada, ovo estrelado e molho BBQ defumado",
+    number1BurgerDesc:
+      "200g de carne, queijo, bacon crocante, alface, tomate, cebola grelhada, ovo estrelado e molho BBQ defumado",
     goatSalahBurger: "Hambúrguer G.O.A.T. SALAH",
-    goatSalahBurgerDesc: "200g de carne, queijo de cabra, alface, tomate, cebola grelhada e compota de figo",
+    goatSalahBurgerDesc:
+      "200g de carne, queijo de cabra, alface, tomate, cebola grelhada e compota de figo",
     ynwaBurger: "Hambúrguer You'll Never Walk Alone",
-    ynwaBurgerDesc: "200g de carne, queijo, bacon crocante, alface, tomate, cebola grelhada, ovo estrelado e molho BBQ defumado",
+    ynwaBurgerDesc:
+      "200g de carne, queijo, bacon crocante, alface, tomate, cebola grelhada, ovo estrelado e molho BBQ defumado",
     caesarSalad: "Salada Caesar",
-    caesarSaladDesc: "Alface romana, frango grelhado, croutons, queijo parmesão, molho caesar",
+    caesarSaladDesc:
+      "Alface romana, frango grelhado, croutons, queijo parmesão, molho caesar",
 
     // Partners
-    ourPartners: "Nossos Parceiros",
+    ourPartners: "Parceiros",
 
     // Contact
     findUs: "Encontre-nos",
@@ -223,6 +251,6 @@ export const translations: Translations = {
     specialRequests: "Pedidos Especiais",
     specialRequestsPlaceholder: "Algum pedido especial ou preferência...",
     submitReservation: "Enviar Reserva",
-    moreThanTen: "Mais de 10"
-  }
+    moreThanTen: "Mais de 10",
+  },
 };
