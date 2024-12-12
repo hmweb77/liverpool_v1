@@ -14,24 +14,55 @@ const form = {
     email: "Email",
     message: "Message",
     submit: "Send Message",
+    submitting: "Sending...",
+    success: "Message sent successfully!",
+    error: "Error sending message. Please try again.",
   },
   pt: {
     contact: "Contacto",
     eventType: "Tipo de Evento",
-    options: ["privatização", "aniversário", "bachelor", "outro"],
+    options: ["Evento privado", "Festa de aniversário", "Despedida de solteiro", "outro"],
     name: "Nome",
     phone: "Telefone",
     email: "Email",
     message: "Mensagem",
     submit: "Enviar Mensagem",
+    submitting: "A enviar...",
+    success: "Mensagem enviada com sucesso!",
+    error: "Erro ao enviar mensagem. Por favor tente novamente.",
   },
 };
 
 const Contact = () => {
   const { t } = useTranslation();
-  const { language, setLanguage } = useContext(LanguageContext);
-
+  const { language } = useContext(LanguageContext);
   const [eventType, setEventType] = useState("privatization");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    try {
+      const form = e.currentTarget;
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+      });
+      
+      if (response.ok) {
+        alert("Submit Successfully");
+        (e.target as HTMLFormElement).reset();
+      } else {
+        throw new Error('Submission failed');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert(form[language].error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <section
@@ -108,23 +139,31 @@ const Contact = () => {
             <form
               action="https://formsubmit.co/amartinez@grupocais.pt"
               method="POST"
+              onSubmit={handleSubmit}
               className="space-y-6"
             >
+              {/* FormSubmit.co configuration fields */}
+              <input type="hidden" name="_subject" value="New Event Request - Liverpool Bar" />
+              <input type="hidden" name="_template" value="table" />
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_next" value={window.location.href} />
+
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">
                   {form[language].eventType}
                 </label>
                 <select
+                  name="event_type"
                   value={eventType}
                   onChange={(e) => setEventType(e.target.value)}
                   className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-red-600"
+                  required
                 >
-                  <option value="privatization">
-                    {form[language].options[0]}
-                  </option>
-                  <option value="birthday">{form[language].options[1]}</option>
-                  <option value="bachelor">{form[language].options[2]}</option>
-                  <option value="other">{form[language].options[3]}</option>
+                  {form[language].options.map((option, index) => (
+                    <option key={index} value={option.toLowerCase()}>
+                      {option}
+                    </option>
+                  ))}
                 </select>
               </div>
 
@@ -134,8 +173,10 @@ const Contact = () => {
                 </label>
                 <input
                   type="text"
+                  name="name"
+                  required
                   className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-red-600"
-                  placeholder="Your name"
+                  placeholder={form[language].name}
                 />
               </div>
 
@@ -145,8 +186,10 @@ const Contact = () => {
                 </label>
                 <input
                   type="tel"
+                  name="phone"
+                  required
                   className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-red-600"
-                  placeholder="Your phone number"
+                  placeholder={form[language].phone}
                 />
               </div>
 
@@ -156,6 +199,8 @@ const Contact = () => {
                 </label>
                 <input
                   type="email"
+                  name="email"
+                  required
                   className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-red-600"
                   placeholder="your@email.com"
                 />
@@ -166,18 +211,21 @@ const Contact = () => {
                   {form[language].message}
                 </label>
                 <textarea
+                  name="message"
                   rows={4}
+                  required
                   className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-red-600"
-                  placeholder="Tell us about your event..."
+                  placeholder={language === 'en' ? "Tell us about your event..." : "Conte-nos sobre o seu evento..."}
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2 focus:ring-offset-gray-900 transition-colors"
+                disabled={isSubmitting}
+                className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2 focus:ring-offset-gray-900 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Send size={18} />
-                {form[language].submit}
+                {isSubmitting ? form[language].submitting : form[language].submit}
               </button>
             </form>
           </div>

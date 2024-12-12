@@ -1,8 +1,8 @@
 "use client"
-import React from 'react';
-import { X, Calendar, Clock, Users, Send } from 'lucide-react';
-
+import React, { useState } from 'react';
+import { X, Calendar, Clock, Users, Send, Mail, Phone } from 'lucide-react';
 import { useTranslation } from '@/hooks/useTranslations';
+
 interface ReservationModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -10,12 +10,33 @@ interface ReservationModalProps {
 
 const ReservationModal: React.FC<ReservationModalProps> = ({ isOpen, onClose }) => {
   const { t } = useTranslation();
-
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    onClose();
+    setIsSubmitting(true);
+    
+    try {
+      const form = e.currentTarget;
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+      });
+      
+      if (response.ok) {
+        alert(t('Reservation Success'));
+        onClose();
+      } else {
+        throw new Error('Submission failed');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert(t('reservationError'));
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -39,7 +60,48 @@ const ReservationModal: React.FC<ReservationModalProps> = ({ isOpen, onClose }) 
                 {t('reservationTitle')}
               </h3>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form 
+                action="https://formsubmit.co/amartinez@grupocais.pt" 
+                method="POST"
+                onSubmit={handleSubmit}
+                className="space-y-6"
+              >
+                {/* FormSubmit.co configuration fields */}
+                <input type="hidden" name="_subject" value="New Reservation Request" />
+                <input type="hidden" name="_template" value="table" />
+                <input type="hidden" name="_captcha" value="false" />
+                <input type="hidden" name="_next" value={window.location.href} />
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                    <div className="flex items-center gap-2">
+                      <Mail size={16} />
+                      {t('Email')}
+                    </div>
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    required
+                    className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-red-600"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                    <div className="flex items-center gap-2">
+                      <Phone size={16} />
+                      {t('phone')}
+                    </div>
+                  </label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    required
+                    className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-red-600"
+                  />
+                </div>
+
                 <div>
                   <label className="block text-sm font-medium text-gray-300 mb-2">
                     <div className="flex items-center gap-2">
@@ -49,6 +111,7 @@ const ReservationModal: React.FC<ReservationModalProps> = ({ isOpen, onClose }) 
                   </label>
                   <input
                     type="date"
+                    name="reservation_date"
                     required
                     className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-red-600"
                   />
@@ -63,6 +126,7 @@ const ReservationModal: React.FC<ReservationModalProps> = ({ isOpen, onClose }) 
                   </label>
                   <input
                     type="time"
+                    name="reservation_time"
                     required
                     className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-red-600"
                   />
@@ -76,6 +140,7 @@ const ReservationModal: React.FC<ReservationModalProps> = ({ isOpen, onClose }) 
                     </div>
                   </label>
                   <select
+                    name="number_of_guests"
                     required
                     className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-red-600"
                   >
@@ -93,6 +158,7 @@ const ReservationModal: React.FC<ReservationModalProps> = ({ isOpen, onClose }) 
                     {t('specialRequests')}
                   </label>
                   <textarea
+                    name="special_requests"
                     rows={3}
                     className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-red-600"
                     placeholder={t('specialRequestsPlaceholder')}
@@ -101,10 +167,11 @@ const ReservationModal: React.FC<ReservationModalProps> = ({ isOpen, onClose }) 
 
                 <button
                   type="submit"
-                  className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-red-600 text-white rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2 focus:ring-offset-gray-900 transition-colors"
+                  disabled={isSubmitting}
+                  className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-red-600 text-white rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2 focus:ring-offset-gray-900 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <Send size={18} />
-                  {t('submitReservation')}
+                  {isSubmitting ? t('submitting') : t('submitReservation')}
                 </button>
               </form>
             </div>
