@@ -20,6 +20,7 @@ export const translations: Translations = {
     discoverStory: "Discover Our Story",
     makeReservation: "Make a Reservation",
     discoverMenu: "Discover our Menu",
+    Reservation:"Make a Reservation",
     specialEvent: "🎉 Premier League at Liverpool Bar! 🏆",
 
     // About
@@ -143,6 +144,7 @@ export const translations: Translations = {
     discoverStory: "Descubra a Nossa História",
     makeReservation: "Fazer Reserva",
     discoverMenu: "Descubra o nosso Menu",
+    Reservation:"Reservar",
     specialEvent: "🎉 Premier League no Liverpool Bar! 🏆",
 
     // About

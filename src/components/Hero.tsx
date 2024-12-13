@@ -1,12 +1,14 @@
 "use client"
 import React, { useState, useEffect } from 'react';
-import { ChevronDown, FileText } from 'lucide-react';
+import { ChevronDown, FileText,Calendar } from 'lucide-react';
+
 import ReservationModal from './ReservationsModal';
 import { useTranslation } from '../hooks/useTranslations';
 import { sanityClient } from '@/sanityClient';
 
 const Hero = () => {
   const { t } = useTranslation();
+  const [isOpen, setIsOpen] = React.useState(false);
   const [isReservationModalOpen, setIsReservationModalOpen] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [heroDescription, setHeroDescription] = useState('');
@@ -80,6 +82,16 @@ const Hero = () => {
           >
             {t('discoverStory')}
           </a>
+          <button
+              onClick={() => {
+                setIsReservationModalOpen(true);
+                setIsOpen(false);
+              }}
+              className="flex items-center gap-2 text-white bg-red-600 hover:bg-red-700 px-4 py-2 rounded-full transition-colors "
+            >
+              <Calendar size={18} />
+                 {t('Reservation')}
+            </button>
           <a
             href="#menu"
             className="group relative px-8 py-4 bg-white/5 hover:bg-white/10 text-white rounded-full overflow-hidden transition-all duration-500 hover:scale-110"
