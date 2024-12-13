@@ -8,7 +8,7 @@ const form = {
   en: {
     contact: "Contact Us",
     eventType: "Event Type",
-    options: ["privatization", "birthday", "bachelor", "other"],
+    options: ["Private Event", "Birthday Party", "Bachelor Party", "Other"],
     name: "Name",
     phone: "Phone Number",
     email: "Email",
@@ -21,7 +21,7 @@ const form = {
   pt: {
     contact: "Contacto",
     eventType: "Tipo de Evento",
-    options: ["Evento privado", "Festa de aniversário", "Despedida de solteiro", "outro"],
+    options: ["Evento privado", "Festa de aniversário", "Despedida de solteiro", "Outro"],
     name: "Nome",
     phone: "Telefone",
     email: "Email",
