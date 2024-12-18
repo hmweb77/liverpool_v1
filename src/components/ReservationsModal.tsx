@@ -174,11 +174,8 @@ const ReservationModal: React.FC<ReservationModalProps> = ({ isOpen, onClose }) 
                     className="mt-1 h-4 w-4 rounded border-gray-700 bg-gray-800 text-red-600 focus:ring-red-600"
                   />
                   <label htmlFor="consent" className="text-sm text-gray-300">
-                    {t('locale') === 'pt' ? (
-                      "Eu aceito e concordo que o Bar Liverpool utilize os meus dados aqui preenchidos para entrar em contacto comigo"
-                    ) : (
-                      "I accept and agree that Bar Liverpool may use the data I have provided here to contact me"
-                    )}
+                  {t('checkbox')}
+                    
                   </label>
                 </div>
 

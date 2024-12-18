@@ -22,7 +22,7 @@ export const translations: Translations = {
     discoverMenu: "Discover our Menu",
     Reservation:"Make a Reservation",
     specialEvent: "🎉 Premier League at Liverpool Bar! 🏆",
-
+    checkbox:"I accept and agree that Bar Liverpool may use the data I have provided here to contact me",
     // About
     legacyTitle: "A Legacy of Nights to Remember",
     legacyText:
@@ -148,6 +148,7 @@ export const translations: Translations = {
     specialEvent: "🎉 Premier League no Liverpool Bar! 🏆",
 
     // About
+    checkbox:"Eu aceito e concordo que o Bar Liverpool utilize os meus dados aqui preenchidos para entrar em contacto comigo",
     legacyTitle: "Um Legado de Noites Memoráveis",
     legacyText:
       "Localizado na icônica Rua Cor-de-Rosa, o Liverpool Bar nasceu numa época em que nomes de cidades portuárias eram escolhidos estrategicamente para atrair os marinheiros que desembarcavam dos navios no porto de Lisboa. Rodeado por outros bares com nomes também chamativos, o Liverpool destacava-se pelo seu ambiente boêmio e inspirador, onde noites inesquecíveis tomavam forma ao som de conversas animadas e brindes entusiásticos. Ao longo das décadas, o espaço evoluiu, adaptando-se aos novos tempos, tornando-se também um ponto de encontro para os amantes de desporto em geral e adeptos do Liverpool F.C., continuando assim a ser um legado de histórias que se cruzam e memórias que continuam a ganhar vida.Hoje, é um dos poucos na rua que ainda preserva a sua origem e essência, mantendo vivo o charme e a autenticidade que o tornaram único.",
